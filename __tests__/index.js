@@ -21,5 +21,3 @@ it('exists due to multiple files are provided without overwrite flag', () => {
   process.argv = ['/usr/bin/node', 'index.js', '/tmp/file1', '/tmp/file2']
   expect(launchApp).toThrow()
 })
-
-

@@ -31,7 +31,7 @@ args.forEach((value, index, array) => {
 })
 
 if (!overwriteEnabled && filePaths.length !== 1) {
-  process.stderr.write(`Multiple files can be processed only with -w (--overwrite) flag enabled`)
+  process.stderr.write('Multiple files can be processed only with -w (--overwrite) flag enabled')
   process.exit(2)
 }
 
@@ -66,7 +66,7 @@ async function main () {
   }
 }
 
-async function printSorted(content) {
+async function printSorted (content) {
   process.stdout.write(content)
 }
 
@@ -90,12 +90,13 @@ async function sortEnvContent (content) {
 
   groupedEnvFiles.sort((a, b) => {
     const [varA, varB] = [a, b].map(value => value.split(NEWLINE).filter(line => !line.trim().startsWith('#')).at(-1))
-    if (varA < varB)
+    if (varA < varB) {
       return -1
-    else if (varA > varB)
+    } else if (varA > varB) {
       return 1
-    else
+    } else {
       return 0
+    }
   })
 
   return groupedEnvFiles.join(NEWLINE + NEWLINE)
