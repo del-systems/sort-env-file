@@ -56,6 +56,8 @@ async function main () {
           await openedFiles.at(index).write(content, 0, 'utf-8')
         })
       )
+
+      process.stderr.write('Files were overriten sucessfully')
     } else {
       sortedEnvFiles.forEach(printSorted)
     }
@@ -66,7 +68,7 @@ async function main () {
   }
 }
 
-async function printSorted (content) {
+function printSorted (content) {
   process.stdout.write(content)
 }
 
@@ -81,7 +83,13 @@ async function sortEnvContent (content) {
         groups.push('')
       } else {
         const previousLine = groups.pop()
-        previousLine === '' ? groups.push(line) : groups.push(previousLine + NEWLINE + line)
+        if (previousLine.trim() === '') {
+          groups.push(line)
+        } else if (previousLine.trim().startsWith('#')) {
+          groups.push(previousLine + NEWLINE + line)
+        } else {
+          groups.push(previousLine, line)
+        }
       }
       return groups
     },
@@ -102,4 +110,4 @@ async function sortEnvContent (content) {
   return groupedEnvFiles.join(NEWLINE + NEWLINE)
 }
 
-main()
+module.exports = main()
