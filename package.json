@@ -1,6 +1,6 @@
 {
   "name": "@del-systems/sort-env-file",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "Sort your .env files",
   "keywords": [
