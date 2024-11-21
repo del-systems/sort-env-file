@@ -1,5 +1,6 @@
-const fsPromises = require('node:fs/promises')
+#!/usr/bin/env node
 
+const fsPromises = require('node:fs/promises')
 const args = process.argv.slice(2)
 
 function printHelp () {
