@@ -1,12 +1,31 @@
 {
   "name": "@del-systems/sort-env-file",
-  "description": "",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Sort your .env files",
+  "keywords": [
+    "dotenv",
+    "sort",
+    "env",
+    "file"
+  ],
+  "homepage": "https://github.com/del-systems/sort-env-file#readme",
+  "bugs": {
+    "url": "https://github.com/del-systems/sort-env-file/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/del-systems/sort-env-file.git"
+  },
+  "license": "MIT",
+  "author": "Shakhzod Ikromov <aabbcc.double@gmail.com>",
   "main": "index.js",
+  "bin": {
+    "sort-env-file": "index.js"
+  },
   "scripts": {
     "test": "jest"
   },
-  "author": "Shakhzod Ikromov <aabbcc.double@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "jest": "^29.7.0"
   }
