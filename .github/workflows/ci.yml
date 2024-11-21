@@ -1,7 +1,24 @@
 ---
 permissions: read-all
-on: pull_request
+on: [pull_request, push]
 jobs:
+  test:
+    permissions:
+      contents: read
+      statuses: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/jod
+      - run: npm ci
+      - run: npm test
+      - uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   lint:
     permissions:
       contents: read
@@ -11,7 +28,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: yarn install --ignore-scripts
       - uses: super-linter/super-linter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
