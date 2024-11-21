@@ -1,0 +1,8 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "complierOptions": {
+    "module": "CommonJS",
+    "target": "ES6"
+  },
+  "include": ["index.js"]
+}
