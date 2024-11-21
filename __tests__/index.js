@@ -81,9 +81,7 @@ const exampleA = {
   sorted: writeMultiline(add => {
     add('# AWS ACCESS TOKEN')
     add('ACCESS_TOKEN=ID123')
-    add('')
     add('HOME=/tmp')
-    add('')
     add('PATH="HOME/lib/bin:$PATH"')
     add('')
     add('# Server environment')
@@ -108,11 +106,23 @@ const exampleB = {
   }),
   sorted: writeMultiline(add => {
     add('ACME_COMMIT=4566')
-    add('')
     add('ACME_VERSION=1234')
     add('')
     add('# Staging number which is used when forming domain name: app1.dev.example.com')
     add('STAGING_NUMBER=45')
+  })
+}
+
+const exampleC = {
+  unsorted: writeMultiline(add => {
+    add('C=123')
+    add('B=456')
+    add('A=789')
+  }),
+  sorted: writeMultiline(add => {
+    add('A=789')
+    add('B=456')
+    add('C=123')
   })
 }
 
@@ -126,7 +136,8 @@ it('outputs properly', async () => {
 it('overwrites file properly', async () => {
   const fileA = await writeFile(exampleA.unsorted)
   const fileB = await writeFile(exampleB.unsorted)
-  process.argv = ['/usr/bin/node', 'index.js', '-w', fileA, fileB]
+  const fileC = await writeFile(exampleC.unsorted)
+  process.argv = ['/usr/bin/node', 'index.js', '-w', fileA, fileB, fileC]
 
   await launchApp()
   expect(process.stderr.write).toBeCalled()
@@ -135,4 +146,5 @@ it('overwrites file properly', async () => {
   const fs = require('node:fs/promises')
   expect(await fs.readFile(fileA, 'utf-8')).toEqual(exampleA.sorted)
   expect(await fs.readFile(fileB, 'utf-8')).toEqual(exampleB.sorted)
+  expect(await fs.readFile(fileC, 'utf-8')).toEqual(exampleC.sorted)
 })

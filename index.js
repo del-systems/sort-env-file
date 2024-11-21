@@ -108,7 +108,14 @@ async function sortEnvContent (content) {
     }
   })
 
-  return groupedEnvFiles.join(NEWLINE + NEWLINE)
+  return groupedEnvFiles.reduce((output, elem) => {
+    if (output === null) return elem
+
+    const lines = elem.split(NEWLINE)
+    const shouldAddNewline = lines.length > 1 || lines[0].trim().startsWith('#')
+
+    return output + NEWLINE + (shouldAddNewline ? NEWLINE : '') + elem
+  }, null)
 }
 
 module.exports = main()
