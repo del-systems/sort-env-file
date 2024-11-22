@@ -77,6 +77,7 @@ const exampleA = {
     add('# Dangling comment')
     add('')
     add('# Other dangling comment')
+    add('')
   }),
   sorted: writeMultiline(add => {
     add('# AWS ACCESS TOKEN')
@@ -93,6 +94,7 @@ const exampleA = {
     add('# Dangling comment')
     add('')
     add('# Other dangling comment')
+    add('')
   })
 }
 
@@ -110,6 +112,7 @@ const exampleB = {
     add('')
     add('# Staging number which is used when forming domain name: app1.dev.example.com')
     add('STAGING_NUMBER=45')
+    add('')
   })
 }
 
@@ -123,6 +126,7 @@ const exampleC = {
     add('A=789')
     add('B=456')
     add('C=123')
+    add('')
   })
 }
 

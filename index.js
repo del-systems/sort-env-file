@@ -115,7 +115,7 @@ async function sortEnvContent (content) {
     const shouldAddNewline = lines.length > 1 || lines[0].trim().startsWith('#')
 
     return output + NEWLINE + (shouldAddNewline ? NEWLINE : '') + elem
-  }, null)
+  }, null) + NEWLINE
 }
 
 module.exports = main()
